@@ -1,0 +1,320 @@
+html {
+	font-family: 'Arvo', sans-serif;
+	background: #231f20;
+	color: whitesmoke;
+}
+
+/*-----------------------------------------------BODY---------------------------------------------*/
+
+body {
+
+}
+
+/*-----------------------------BODY ELEMENTS --------------------------------*/
+
+header {
+
+}
+
+/*-----------------*/
+
+section {
+
+}
+
+/*-----------------*/
+
+footer {
+
+}
+
+/*---------------------------------------------------------------------------*/
+
+/*-----------------------------TITLE ELEMENTS--------------------------------*/
+
+h1 {
+	margin: auto 2px;
+	text-align: center;
+	font-family: Bitter, sans-serif;
+
+}
+
+h2 {
+
+}
+
+h3 {
+
+}
+
+h4 {
+
+}
+
+h5 {
+
+}
+
+h6 {
+
+}
+
+/*---------------------------------------------------------------------------*/
+
+/*-------------------------TEXT & LINKS ELEMENTS-----------------------------*/
+
+p {
+
+}
+
+a {
+	color           : lightskyblue;
+	text-decoration : none;
+}
+
+a:hover {
+	color: #6094bf;
+}
+
+/*---------------------------------------------------------------------------*/
+
+/*-------------------------BOXES and CARDS ELEMENTS--------------------------*/
+
+.modalbox {
+
+}
+
+/*---------------------------------------------------------------------------*/
+
+/*-------------------------------BUTTONS-------------------------------------*/
+
+button {
+	font-family: 'Arvo', sans-serif;
+	cursor: pointer;
+}
+
+.btn-normal {
+	border     : none;
+	/*border-radius: 2px;*/
+	background : #4ab5b8;
+	color      : white;
+	padding    : 5px;
+	margin     : 5px 0;
+	display    : inline-block;
+	transition : 0.2s;
+	position   : relative;
+}
+
+.btn-normal:hover {
+	background : #47a0a3;
+}
+
+.btn-normal:active {
+	background : #6ce9ec;
+	transition : 0s;
+}
+
+.btn-normal:disabled {
+	cursor : not-allowed;
+}
+
+/*----------------------------------*/
+
+.btn-send {
+	border     : none;
+	/*border-radius: 2px;*/
+	background : #65b644;
+	color      : white;
+	padding    : 5px;
+	margin     : 5px 0;
+	display    : inline-block;
+	transition : 0.2s;
+	position   : relative;
+}
+
+.btn-send:hover {
+	background : #54a342;
+}
+
+.btn-send:active {
+	background : #489140;
+	transition : 0s;
+}
+
+.btn-send:disabled {
+	cursor : not-allowed;
+}
+
+/*----------------------------------*/
+
+.btn-reset {
+	border     : none;
+	/*border-radius: 2px;*/
+	background : #e4b808;
+	color      : white;
+	padding    : 5px;
+	margin     : 5px 0;
+	display    : inline-block;
+	transition : 0.2s;
+	position   : relative;
+}
+
+.btn-reset:hover {
+	background : #ca9f08;
+}
+
+.btn-reset:active {
+
+}
+
+.btn-reset:disabled {
+
+}
+
+/*----------------------------------*/
+
+.btn-go {
+	border     : none;
+	/*border-radius: 2px;*/
+	background : #53c688;
+	color      : white;
+	padding    : 5px;
+	margin     : 5px 0;
+	display    : inline-block;
+	transition : 0.2s;
+	position   : relative;
+
+}
+
+.btn-go:hover {
+	background : #52ab6e;
+}
+
+.btn-go:active {
+
+}
+
+.btn-go:disabled {
+
+}
+
+/*----------------------------------*/
+
+.btn-back {
+	border     : none;
+	/*border-radius: 2px;*/
+	background : #db5921;
+	color      : white;
+	padding    : 5px;
+	margin     : 5px 0;
+	display    : inline-block;
+	transition : 0.2s;
+	position   : relative;
+}
+
+.btn-back:hover {
+	background : #c05420;
+}
+
+.btn-back:active {
+
+}
+
+.btn-back:disabled {
+
+}
+
+/*----------------------------------*/
+
+.btn-small {
+	padding: -5px;
+	font-size: 8px;
+}
+
+.btn-medium {
+	padding: 10px;
+	font-size: 15px;
+}
+
+.btn-big {
+	padding: 20px;
+	font-size: 35px;
+}
+
+/*----------------------------------*/
+
+.btn-round {
+	border-radius: 5px;
+}
+
+/*----------------------------------*/
+
+.btn-round.btn-small {
+	border-radius: 3px;
+}
+
+/*----------------------------------*/
+
+.btn-round.btn-medium {
+	border-radius: 10px;
+}
+
+/*----------------------------------*/
+
+.btn-round.btn-big {
+	border-radius: 15px;
+}
+
+/*--------------ANIMATED BUTTONS--------------------*/
+
+.btn-animated.btn-back {
+	transition: all .3s;
+	display: inline-block;
+}
+
+/*----------------------------------*/
+
+.btn-animated.btn-back span {
+	display: inline-block;
+	position: relative;
+	transition: .3s;
+}
+
+.btn-animated.btn-back.btn-small:hover span {
+	padding-left: 7px
+}
+
+.btn-animated.btn-back:hover span,
+.btn-animated.btn-back.btn-medium:hover span {
+	padding-left: 10px
+}
+
+.btn-animated.btn-back.btn-big:hover span {
+	padding-left: 23px
+}
+
+.btn-animated.btn-back span::before {
+	content: "«";
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	left: -20px;
+	transition: .3s;
+}
+
+.btn-animated.btn-back:hover span::before {
+	opacity: 1;
+	left: -1px;
+}
+
+.btn-animated.btn-back.btn-big:hover span::before,
+.btn-animated.btn-back.btn-medium:hover span::before {
+	left: -4px;
+}
+
+
+/*---------------------------------------------------------------------------*/
+
+/*-----------------------------ANIMATIONS------------------------------------*/
+
+/*---------------------------------------------------------------------------*/

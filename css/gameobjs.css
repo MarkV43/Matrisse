@@ -1,0 +1,162 @@
+.gameCard {
+	display: inline-block;
+	margin:        auto;
+	width:         600px;
+	height:        600px;
+	background:    #e9ece0;
+	border-radius: 5px;
+}
+
+.gameTableBG {
+	width:      550px;
+	height:     550px;
+	background: #56594e;
+	position:   relative;
+	top:        25px;
+	left:       25px;
+	display: flex;
+}
+
+.gameTable {
+	margin: auto;
+}
+
+.gameTable td {
+	/*background: #45b795;*/
+	padding:    35px;
+}
+
+.vez, .gameTable td {
+	background-color: #45b795;
+}
+
+.p0 {
+	-webkit-animation: sk-rotateplane 0.3s ease-in-out;
+	animation: rotate--to-p0 0.3s ease-in-out;
+	animation-fill-mode: forwards;
+	animation-direction: normal;
+}
+
+.p1 {
+	/*background: white !important;*/
+	-webkit-animation: sk-rotateplane 0.3s ease-in-out;
+	animation: rotate--to-p1 0.3s ease-in-out;
+	animation-fill-mode: forwards;
+	animation-direction: normal;
+}
+
+.p2 {
+	/*background: black !important;*/
+	-webkit-animation: sk-rotateplane 0.3s ease-in-out ;
+	animation: rotate--to-p2 0.3s ease-in-out;
+	animation-fill-mode: forwards;
+	animation-direction: normal;
+}
+
+.gameScreen {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 1px;
+}
+
+.gameScreen > span {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 50px;
+	height: 50px;
+	margin: 0 5px;
+	border: 6px solid;
+	font-family: Bitter, sans-serif;
+	font-weight: bold;
+	font-size: 25px;
+}
+
+#p1Placar {
+	border-color: white;
+}
+
+#p2Placar {
+	border-color: black;
+}
+
+.screen {
+	display: flex;
+	justify-content: center;
+}
+
+.click {
+	box-shadow: 0 0 0 6px yellow inset;
+}
+
+.ganha {
+	background-color: lime;
+}
+
+.perde {
+	background-color: red;
+}
+
+
+/*-----------------------------------------------------------------------*/
+
+@-webkit-keyframes rotate--to-p1 {
+	0% { -webkit-transform: perspective(120px) }
+	100 % { -webkit-transform: perspective(120px) rotateY(180deg) }
+}
+
+@keyframes rotate--to-p1 {
+	0% {
+		background-color: #45b795;
+		transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+		-webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg)
+	}
+
+	100% {
+		background-color: white;
+		transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+		-webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
+	}
+}
+
+/*-----------------------------------------------------------------------*/
+
+@-webkit-keyframes rotate--to-p2 {
+	0% { -webkit-transform: perspective(120px) }
+	100 % { -webkit-transform: perspective(120px) rotateY(180deg) }
+}
+
+@keyframes rotate--to-p2 {
+	0% {
+		background-color: #45b795;
+		transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+		-webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg)
+	}
+
+	100% {
+		background-color: black;
+		transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+		-webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
+	}
+}
+
+/*-----------------------------------------------------------------------*/
+
+@-webkit-keyframes rotate--to-p0 {
+	0% { -webkit-transform: perspective(120px) }
+	100 % { -webkit-transform: perspective(120px) rotateY(180deg) }
+}
+
+@keyframes rotate--to-p0 {
+	0% {
+		transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+		-webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg)
+	}
+
+	100% {
+		background-color: #45b795;
+		transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+		-webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
+	}
+}
