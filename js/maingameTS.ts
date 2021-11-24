@@ -17,7 +17,7 @@ let clicado:string = null,
 // 1: medium
 // 2: hard
 // 3: impossible (WIP)
-const SIZE = linha[0].childNodes.length,
+const SIZE = linha[0].childElementCount,
     WIN = Math.floor(SIZE * SIZE / 2) + 1,
     INF = Number.NEGATIVE_INFINITY;
 
@@ -68,13 +68,10 @@ function confereLivre(id:string) {
 function atualizaPlacar() {
     white = 0;
     black = 0;
-    for (let i = 0;
-         i < SIZE;
-         i++) {
-        for (let j = 0;
-             j < SIZE;
-             j++) {
-            let pos = document.getElementById(i.toString() + j).classList;
+    for (let i = 0; i < SIZE; i++) {
+        for (let j = 0; j < SIZE; j++) {
+            const id = i.toString() + j;
+            let pos = document.getElementById(id).classList;
             if (pos.contains("p1"))
                 white++;
             else if (pos.contains("p2"))
@@ -138,13 +135,13 @@ function botaoClique(botao, ai:boolean) {
     //console.log(id + "\n" + (ai ? "true" : "false"));
     if (!end) {
         if (!confereLivre(id))
-            alert("Você só pode jogar nos quadrados azuis");
+            alert("Vocï¿½ sï¿½ pode jogar nos quadrados azuis");
         else {
             if (ai != aiTurn)
                 alert("Espere pela vez do seu oponente");
             else {
                 if ((whiteTurn && whiteLast == id) || (!whiteTurn && blackLast == id))
-                    alert("Você não pode jogar duas vezes seguidas no mesmo lugar");
+                    alert("Vocï¿½ nï¿½o pode jogar duas vezes seguidas no mesmo lugar");
                 else {
                     pintaVolta(id, whiteTurn);
                     bordaClique(id);
@@ -181,7 +178,9 @@ function callAI(whiteC:boolean) {
     let jogadas = analizeBoard(whiteC),
         jogada = decidirJogada(jogadas, whiteC);
     //console.log(jogadas);
-    botaoClique(document.getElementById(jogada.x.toString() + jogada.y), true);
+    const id = jogada.x.toString() + jogada.y;
+    console.log({id});
+    botaoClique(document.getElementById(id), true);
 }
 
 function decidirJogada(jogadas:any, whiteC:boolean):any {
@@ -234,24 +233,26 @@ function decidirJogada(jogadas:any, whiteC:boolean):any {
             }
         }
         jogada = maxVantagem.ids[vLucro.maxId()];
-    } else {
-        let bests = {valor: -INF, ids: [{}]};
-        for (let i in jogadas.ganha) {
-            if (jogadas.ganha.hasOwnProperty(i)) {
-                for (let j in jogadas.ganha[i]) {
-                    if (jogadas.ganha[i].hasOwnProperty(j)) {
-                        let valor = jogadas.lucro[i][j] + (jogadas.vantagem[i][j] / 3);
-                        if (valor > bests.valor)
-                            bests = {valor: valor, ids: [{x: i, y: j}]};
-                        else if (valor == bests.valor)
-                            bests.ids.push({x: i, y: j});
-                    }
+    }
+    let bests = {valor: -INF, ids: [{}]};
+    for (let i in jogadas.ganha) {
+        if (jogadas.ganha.hasOwnProperty(i)) {
+            for (let j in jogadas.ganha[i]) {
+                if (jogadas.ganha[i].hasOwnProperty(j)) {
+                    let valor = jogadas.lucro[i][j] + (jogadas.vantagem[i][j] / 3);
+                    if (valor > bests.valor)
+                        bests = {valor: valor, ids: [{x: i, y: j}]};
+                    else if (valor == bests.valor)
+                        bests.ids.push({x: i, y: j});
                 }
             }
         }
-        //console.log(bests);
-        jogada = bests.ids.rand();
     }
+    
+    console.log({bests});
+    jogada = bests.ids.rand();
+
+    console.log({jogada});
     return jogada;
 }
 

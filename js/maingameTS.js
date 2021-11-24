@@ -4,7 +4,7 @@ var clicado = null, linha = document.querySelectorAll("table.gameTable tr"), tam
 // 1: medium
 // 2: hard
 // 3: impossible (WIP)
-var SIZE = linha[0].childNodes.length, WIN = Math.floor(SIZE * SIZE / 2) + 1, INF = Number.NEGATIVE_INFINITY;
+var SIZE = linha[0].childElementCount, WIN = Math.floor(SIZE * SIZE / 2) + 1, INF = Number.NEGATIVE_INFINITY;
 function pintaQuadrado(id, whiteC) {
     var pos = document.getElementById(id);
     if (!confereLivre(id))
@@ -41,7 +41,8 @@ function atualizaPlacar() {
     black = 0;
     for (var i = 0; i < SIZE; i++) {
         for (var j = 0; j < SIZE; j++) {
-            var pos = document.getElementById(i.toString() + j).classList;
+            var id = i.toString() + j;
+            var pos = document.getElementById(id).classList;
             if (pos.contains("p1"))
                 white++;
             else if (pos.contains("p2"))
@@ -104,13 +105,13 @@ function botaoClique(botao, ai) {
     //console.log(id + "\n" + (ai ? "true" : "false"));
     if (!end) {
         if (!confereLivre(id))
-            alert("Você só pode jogar nos quadrados azuis");
+            alert("Voc� s� pode jogar nos quadrados azuis");
         else {
             if (ai != aiTurn)
                 alert("Espere pela vez do seu oponente");
             else {
                 if ((whiteTurn && whiteLast == id) || (!whiteTurn && blackLast == id))
-                    alert("Você não pode jogar duas vezes seguidas no mesmo lugar");
+                    alert("Voc� n�o pode jogar duas vezes seguidas no mesmo lugar");
                 else {
                     pintaVolta(id, whiteTurn);
                     bordaClique(id);
@@ -147,7 +148,9 @@ function botaoClique(botao, ai) {
 function callAI(whiteC) {
     var jogadas = analizeBoard(whiteC), jogada = decidirJogada(jogadas, whiteC);
     //console.log(jogadas);
-    botaoClique(document.getElementById(jogada.x.toString() + jogada.y), true);
+    var id = jogada.x.toString() + jogada.y;
+    console.log({ id: id });
+    botaoClique(document.getElementById(id), true);
 }
 function decidirJogada(jogadas, whiteC) {
     var maxGanha = { valor: -INF, ids: [{ x: -1, y: -1 }] }, maxPerde = { valor: -INF, ids: [{ x: -1, y: -1 }] }, maxLucro = { valor: -INF, ids: [{ x: -1, y: -1 }] }, maxVantagem = { valor: -INF, ids: [{ x: -1, y: -1 }] }, jogada = null, max;
@@ -183,9 +186,9 @@ function decidirJogada(jogadas, whiteC) {
             }
         }
     }
-    if (difficulty > 0 && (whiteC ? white : black) + maxLucro.valor >= WIN)
+    if (difficulty > 0 && (whiteC ? white : black) + maxLucro.valor >= WIN) //harder than easy
         jogada = maxLucro.ids.rand();
-    else if (difficulty > 1 && (whiteC ? black : white) >= WIN - 2) {
+    else if (difficulty > 1 && (whiteC ? black : white) >= WIN - 2) { //harder than medium
         var vLucro = [];
         for (var i in maxVantagem.ids) {
             if (maxVantagem.ids.hasOwnProperty(i)) {
@@ -195,24 +198,23 @@ function decidirJogada(jogadas, whiteC) {
         }
         jogada = maxVantagem.ids[vLucro.maxId()];
     }
-    else {
-        var bests = { valor: -INF, ids: [{}] };
-        for (var i in jogadas.ganha) {
-            if (jogadas.ganha.hasOwnProperty(i)) {
-                for (var j in jogadas.ganha[i]) {
-                    if (jogadas.ganha[i].hasOwnProperty(j)) {
-                        var valor = jogadas.lucro[i][j] + (jogadas.vantagem[i][j] / 3);
-                        if (valor > bests.valor)
-                            bests = { valor: valor, ids: [{ x: i, y: j }] };
-                        else if (valor == bests.valor)
-                            bests.ids.push({ x: i, y: j });
-                    }
+    var bests = { valor: -INF, ids: [{}] };
+    for (var i in jogadas.ganha) {
+        if (jogadas.ganha.hasOwnProperty(i)) {
+            for (var j in jogadas.ganha[i]) {
+                if (jogadas.ganha[i].hasOwnProperty(j)) {
+                    var valor = jogadas.lucro[i][j] + (jogadas.vantagem[i][j] / 3);
+                    if (valor > bests.valor)
+                        bests = { valor: valor, ids: [{ x: i, y: j }] };
+                    else if (valor == bests.valor)
+                        bests.ids.push({ x: i, y: j });
                 }
             }
         }
-        //console.log(bests);
-        jogada = bests.ids.rand();
     }
+    console.log({ bests: bests });
+    jogada = bests.ids.rand();
+    console.log({ jogada: jogada });
     return jogada;
 }
 function analizaVolta(id, whiteC) {
